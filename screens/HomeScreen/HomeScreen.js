@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text, Image } from "react-native";
 import React from "react";
+import NavOptions from "./components/NavOptions";
 
 export default function HomeScreen() {
   return (
@@ -15,6 +16,7 @@ export default function HomeScreen() {
             resizeMode: "contain",
           }}
         />
+        <NavOptions />
       </View>
     </View>
   );
