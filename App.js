@@ -1,13 +1,12 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import HomeScreen from "./screens/HomeScreen/HomeScreen";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <View className="flex-1 justify-center">
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <HomeScreen />
     </Provider>
   );
 }
