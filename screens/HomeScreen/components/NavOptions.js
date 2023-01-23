@@ -1,8 +1,11 @@
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { Icon } from "@rneui/themed";
+import { useNavigation } from "@react-navigation/native";
 
 export default function NavOptions() {
+  const navigation = useNavigation();
+
   const data = [
     {
       id: "123",
@@ -24,7 +27,10 @@ export default function NavOptions() {
       keyExtractor={(item) => item.id}
       horizontal
       renderItem={({ item }) => (
-        <TouchableOpacity className="pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40">
+        <TouchableOpacity
+          onPress={() => navigation.navigate(item.screen)}
+          className="pr-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40"
+        >
           <View>
             <Image
               source={{
