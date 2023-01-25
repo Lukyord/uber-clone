@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Image } from "react-native";
 import React from "react";
 import NavOptions from "./components/NavOptions";
+import NavFavorties from "./components/NavFavorties";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { useDispatch } from "react-redux";
@@ -56,6 +57,7 @@ export default function HomeScreen() {
         />
 
         <NavOptions />
+        <NavFavorties />
       </View>
     </View>
   );
