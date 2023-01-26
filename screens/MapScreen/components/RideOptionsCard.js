@@ -76,7 +76,7 @@ export default function RideOptionsCard() {
             />
             <View className="-ml-6">
               <Text className="text-xl font-semibold">{item.title}</Text>
-              <Text>{travelTimeInformation?.duration.text} Travel Time</Text>
+              <Text>{travelTimeInformation?.duration?.text} Travel Time</Text>
             </View>
             <Text className="text-xl">
               <Currency
@@ -87,6 +87,8 @@ export default function RideOptionsCard() {
                   0.01
                 }
                 currency="EUR"
+                decimal="."
+                group=","
               />
             </Text>
           </TouchableOpacity>
