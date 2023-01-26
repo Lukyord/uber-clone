@@ -9,6 +9,9 @@ import {
 import React, { useState } from "react";
 import { Icon } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectTravelTimeInformation } from "../../../redux/slices/navSlice";
+import Currency from "react-currency-formatter";
 
 const data = [
   {
@@ -31,9 +34,12 @@ const data = [
   },
 ];
 
+const SURGE_CHARGE_RATE = 1.5;
+
 export default function RideOptionsCard() {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
+  const travelTimeInformation = useSelector(selectTravelTimeInformation);
 
   return (
     <SafeAreaView className="bg-white flex-grow flex-1">
@@ -44,7 +50,9 @@ export default function RideOptionsCard() {
         >
           <Icon name="chevron-left" type="fontawesome" />
         </TouchableOpacity>
-        <Text className="text-center py-5 text-xl">Select a Ride</Text>
+        <Text className="text-center py-5 text-xl">
+          Select a Ride - {travelTimeInformation?.distance.text}
+        </Text>
       </View>
       <FlatList
         data={data}
@@ -68,13 +76,23 @@ export default function RideOptionsCard() {
             />
             <View className="-ml-6">
               <Text className="text-xl font-semibold">{item.title}</Text>
-              <Text>Travel time...</Text>
+              <Text>{travelTimeInformation?.duration.text} Travel Time</Text>
             </View>
-            <Text className="text-xl">$99</Text>
+            <Text className="text-xl">
+              <Currency
+                quantity={
+                  travelTimeInformation?.duration.value *
+                  SURGE_CHARGE_RATE *
+                  item.multiplier *
+                  0.01
+                }
+                currency="EUR"
+              />
+            </Text>
           </TouchableOpacity>
         )}
       />
-      <View>
+      <View className="mt-auto border-t border-gray-200">
         <TouchableOpacity
           disabled={!selected}
           className={`bg-black py-3 m-3 ${!selected && "bg-gray-300"}`}
